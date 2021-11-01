@@ -27,6 +27,13 @@ if ($.isNode()) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
+    authorCodeList = await getAuthorCodeList('https://gitee.com/fatelight/dongge/raw/master/dongge/anjia.json')
+    if(authorCodeList === '404: Not Found'){
+        authorCodeList = [
+            '46ce068c1c004d82b6fe534700277539',
+        ]
+    }
+
     for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i]
@@ -45,16 +52,13 @@ if ($.isNode()) {
                 }
                 continue
             }
-            authorCodeList = [
-                '8a55a16454c445b09ce2eec5a365e310',
-            ]
             $.bean = 0;
             $.ADID = getUUID('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 1);
             $.UUID = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
             // $.authorCode = authorCodeList[random(0, authorCodeList.length)]
             $.authorCode = ownCode ? ownCode : authorCodeList[random(0, authorCodeList.length)]
             $.authorNum = `${random(1000000, 9999999)}`
-            $.activityId = 'e30b75bc00ce40b394da416c921fea66'
+            $.activityId = 'f88dd152fdc049f3b92aa58339b26345'
             $.activityShopId = '1000014486'
             $.activityUrl = `https://lzkjdz-isv.isvjcloud.com/pool/captain/${$.authorNum}?activityId=${$.activityId}&signUuid=${encodeURIComponent($.authorCode)}&adsource=null&shareuserid4minipg=null&shopid=${$.activityShopId}&lng=00.000000&lat=00.000000&sid=&un_area=`
             await anjia();
@@ -205,6 +209,30 @@ function task(function_id, body, isCommon = 0) {
                 $.log(error)
             } finally {
                 resolve();
+            }
+        })
+    })
+}
+
+function getAuthorCodeList(url) {
+    return new Promise(resolve => {
+        const options = {
+            url: `${url}?${new Date()}`, "timeout": 10000, headers: {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+            }
+        };
+        $.get(options, async (err, resp, data) => {
+            try {
+                if (err) {
+                    $.log(err)
+                } else {
+                if (data) data = JSON.parse(data)
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+                data = null;
+            } finally {
+                resolve(data);
             }
         })
     })
@@ -365,8 +393,6 @@ function getMyPing() {
                         } else {
                             $.log(data.errorMessage)
                         }
-                    } else {
-                        $.log("京东返回了空数据")
                     }
                 }
             } catch (error) {
@@ -444,8 +470,6 @@ function getToken() {
                         if (data.code === "0") {
                             $.token = data.token
                         }
-                    } else {
-                        $.log("京东返回了空数据")
                     }
                 }
             } catch (error) {
@@ -501,8 +525,6 @@ function checkCookie() {
                         if (data.retcode === "0" && data.data.hasOwnProperty("userInfo")) {
                             $.nickName = data.data.userInfo.baseInfo.nickname;
                         }
-                    } else {
-                        $.log('京东返回了空数据');
                     }
                 }
             } catch (e) {
