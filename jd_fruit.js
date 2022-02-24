@@ -1,4 +1,3 @@
-yyds
 /*
 东东水果:脚本更新地址 https://gitee.com/lxk0301/jd_scripts/raw/master/jd_fruit.js
 更新时间：2021-8-20
