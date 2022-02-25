@@ -1,8 +1,8 @@
 /*
 
 一共有2个变量
-jd_zdjr_activityId  活动ID 必需
-jd_zdjr_activityUrl 活动地址 必需
+jd_cjhy_activityId  活动ID 必需
+jd_cjhy_activityUrl 活动地址 必需
 
 已适配docker
 
@@ -21,8 +21,8 @@ cron "40 11 * * *" script-path=jd_zdjr.js,tag=组队瓜分京豆
 
 */
 
-let jd_zdjr_activityId = '10b0ec8fb440470d8fc42af4a07ecefe'// 活动ID
-let jd_zdjr_activityUrl = 'https://lzkjdz-isv.isvjcloud.com'// 活动地址
+let jd_cjhy_activityId = 'c53550b441a04d96be1a969e5d38dbe9'// 活动ID
+let jd_cjhy_activityUrl = 'https://cjhydz-isv.isvjcloud.com'// 活动地址
 
 
 var _0xodx = 'jsjiami.com.v6',
@@ -119,8 +119,8 @@ const $ = new Env('组队瓜分京豆');
 const notify = $['isNode']() ? require(_0xc184('0', 'hmBa')) : '';
 const jdCookieNode = $[_0xc184('1', 'd**I')]() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '', message = '', messageTitle = '';
-activityId = $['getdata'](_0xc184('2', '5ICC')) ? $[_0xc184('3', '0pm[')]('jd_smiek_zdjr_activityId') : jd_zdjr_activityId;
-activityUrl = $['getdata']('jd_smiek_zdjr_activityUrl') ? $[_0xc184('4', 'X([P')]('jd_smiek_zdjr_activityUrl') : jd_zdjr_activityUrl;
+activityId = $['getdata'](_0xc184('2', '5ICC')) ? $[_0xc184('3', '0pm[')]('jd_smiek_zdjr_activityId') : jd_cjhy_activityId;
+activityUrl = $['getdata']('jd_smiek_zdjr_activityUrl') ? $[_0xc184('4', 'X([P')]('jd_smiek_zdjr_activityUrl') : jd_cjhy_activityUrl;
 let activityCookie = '';
 if ($[_0xc184('5', 'k2o4')]()) {
     var nsbZrP = _0xc184('6', '#MMq')['split']('|'), pKPxGS = 0x0;
@@ -912,8 +912,8 @@ function joinShop() {
                 }
             });
         } else {
-            if (process['env'][_0xc184('1ab', 'pZgn')]) activityId = process[_0xc184('1ac', '@9Xe')]['jd_zdjr_activityId'];
-            if (process[_0xc184('1ad', '0pm[')]['jd_zdjr_activityUrl']) activityUrl = process[_0xc184('1ad', '0pm[')][_0xc184('1ae', 'X([P')];
+            if (process['env'][_0xc184('1ab', 'pZgn')]) activityId = process[_0xc184('1ac', '@9Xe')]['jd_cjhy_activityId'];
+            if (process[_0xc184('1ad', '0pm[')]['jd_cjhy_activityUrl']) activityUrl = process[_0xc184('1ad', '0pm[')][_0xc184('1ae', 'X([P')];
             Object[_0xc184('1af', 'jf%L')](jdCookieNode)[_0xc184('1b0', '0v]z')](_0xab312e => {
                 cookiesArr[_0xc184('1b1', 'sb0O')](jdCookieNode[_0xab312e]);
             });
